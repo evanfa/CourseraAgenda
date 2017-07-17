@@ -1,20 +1,14 @@
 package com.dissidentmind.evanfa.courseraagenda;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainDetActivity extends AppCompatActivity {
@@ -53,12 +47,12 @@ public class MainDetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_det);
 
-        ArrayList<TextInputEditText> receivedItemsList = new ArrayList<>();
+        ArrayList<EditText> receivedItemsList = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
 
-            final ArrayList<String> arr = (ArrayList<String>)extras.getStringArrayList("valuesStr");
+            final ArrayList<String> arr = extras.getStringArrayList("valuesStr");
 
            // Toast toastW = Toast.makeText(getApplicationContext(), someVariable, Toast.LENGTH_SHORT);
             //Toast toastW = Toast.makeText(getApplicationContext(), "Geting Values", Toast.LENGTH_SHORT);

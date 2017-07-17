@@ -6,13 +6,13 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,7 +74,7 @@ public class MainActivity extends ActionBarActivity {
 
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
-       // Context context = getApplicationContext();
+        // Context context = getApplicationContext();
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             // Use the current date as the default date in the picker
@@ -89,29 +89,29 @@ public class MainActivity extends ActionBarActivity {
         public void onDateSet(DatePicker view, int year, int month, int day) {
 
             Context context = super.getActivity().getApplicationContext();
-            CharSequence text = day+"-"+month+"-"+year;
+            CharSequence text = day + "-" + month + "-" + year;
             int duration = Toast.LENGTH_SHORT;
 
-           // Toast toast = Toast.makeText(context, text, duration);
-           // toast.show();
+            // Toast toast = Toast.makeText(context, text, duration);
+            // toast.show();
 
             setDate(text);
         }
 
-        public void setDate(CharSequence charDate){
-           TextView dateVT = (TextView) super.getActivity().findViewById(R.id.showBornDate);
+        public void setDate(CharSequence charDate) {
+            TextView dateVT = (TextView) super.getActivity().findViewById(R.id.showBornDate);
             dateVT.setText(charDate);
         }
     }
 
-    protected ArrayList getFieldsValues(){
+    protected ArrayList getFieldsValues() {
         final ArrayList<String> arr = new ArrayList<String>();
 
-        TextInputEditText txtName  = (TextInputEditText) findViewById(R.id.inN); //inN
-        TextInputEditText txtBorn = (TextInputEditText) findViewById(R.id.showBornDate);
-        TextInputEditText txtPhone = (TextInputEditText) findViewById(R.id.inP);
-        TextInputEditText txtEmail = (TextInputEditText) findViewById(R.id.inE);
-        TextInputEditText txtDescr = (TextInputEditText) findViewById(R.id.inD);
+        EditText txtName = (EditText) findViewById(R.id.inN); //inN
+        EditText txtBorn = (EditText) findViewById(R.id.showBornDate);
+        EditText txtPhone = (EditText) findViewById(R.id.inP);
+        EditText txtEmail = (EditText) findViewById(R.id.inE);
+        EditText txtDescr = (EditText) findViewById(R.id.inD);
 
         String txtCleanName = txtName.getText().toString();
         String txtCleanBorn = txtBorn.getText().toString();
@@ -128,14 +128,14 @@ public class MainActivity extends ActionBarActivity {
         return arr;
     }
 
-    protected ArrayList setFieldsValues(ArrayList strValues){
-        final ArrayList<TextInputEditText> arr = new ArrayList<>();
+    protected ArrayList setFieldsValues(ArrayList strValues) {
+        final ArrayList<EditText> arr = new ArrayList<>();
 
-        TextInputEditText txtName  = (TextInputEditText) findViewById(R.id.inN); //inN
-        TextInputEditText txtBorn = (TextInputEditText) findViewById(R.id.showBornDate);
-        TextInputEditText txtPhone = (TextInputEditText) findViewById(R.id.inP);
-        TextInputEditText txtEmail = (TextInputEditText) findViewById(R.id.inE);
-        TextInputEditText txtDescr = (TextInputEditText) findViewById(R.id.inD);
+        EditText txtName = (EditText) findViewById(R.id.inN); //inN
+        EditText txtBorn = (EditText) findViewById(R.id.showBornDate);
+        EditText txtPhone = (EditText) findViewById(R.id.inP);
+        EditText txtEmail = (EditText) findViewById(R.id.inE);
+        EditText txtDescr = (EditText) findViewById(R.id.inD);
 
         arr.add(txtName);
         arr.add(txtBorn);
@@ -143,7 +143,7 @@ public class MainActivity extends ActionBarActivity {
         arr.add(txtEmail);
         arr.add(txtDescr);
 
-        for(int wZ = 0; wZ < arr.size(); wZ++){
+        for (int wZ = 0; wZ < arr.size(); wZ++) {
             arr.get(wZ).setText((String) strValues.get(wZ));
         }
         return arr;
@@ -163,7 +163,7 @@ public class MainActivity extends ActionBarActivity {
 
                 Intent intent = new Intent(MainActivity.this, MainDetActivity.class);
                 final ArrayList<String> arrayFields = getFieldsValues();
-                intent.putExtra("valuesStr",arrayFields);
+                intent.putExtra("valuesStr", arrayFields);
                 startActivity(intent);
                 finish();
                 // Toast toast = Toast.makeText(getApplicationContext(), "Inted Click", Toast.LENGTH_SHORT);
@@ -177,8 +177,8 @@ public class MainActivity extends ActionBarActivity {
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            final ArrayList<String> arrayStringList = (ArrayList<String>)extras.getStringArrayList("strsReturn");
-                setFieldsValues(arrayStringList);
+            final ArrayList<String> arrayStringList = extras.getStringArrayList("strsReturn");
+            setFieldsValues(arrayStringList);
         }
     }
 
@@ -204,6 +204,6 @@ public class MainActivity extends ActionBarActivity {
 
     public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getFragmentManager(),"datePicker");
+        newFragment.show(getFragmentManager(), "datePicker");
     }
 }
